@@ -1,0 +1,74 @@
+import pygame
+import random
+
+pygame.init()
+pygame.display.set_caption("bruh") 
+screen = pygame.display.set_mode((500, 500))
+clock = pygame.time.Clock()
+
+
+BLACK = (0,0,0)
+WHITE = (255,255,255)
+RED = (255,0,0)
+
+num = input ()
+numloca = input()
+
+balls = list()
+count = 100
+    
+for i in range(count):
+    balls.append(random.randrange (1,50))
+print(balls) 
+
+
+
+     
+    
+def linearcheck(i, l, numba):
+    print(i)
+    if (i == numba):
+        print ("found the number, it's", i , ", in slot", l)
+        return True
+    else:
+        print ("haven't found da numba yet")
+        return False
+
+doExit = False
+
+balls[int(numloca)] = num
+
+i = 0
+linp = False
+
+while not doExit:
+    clock.tick(60)
+
+    events = pygame.event.get()
+
+    for event in events:
+      if event.type == pygame.quit:
+        doExit = True
+
+
+    while linp == False:
+        if linearcheck(balls[i],i, num) == True:
+            linp = True
+        else:
+          linearcheck(balls[i], i, num)
+          i += 1
+       
+       
+            
+    
+
+    screen.fill((5, 5, 100))
+
+    #for m in range (count):
+        #pygame.draw.rect(screen, WHITE, (m * 5, 0, 5, balls[m]))
+
+
+    pygame.display.flip() 
+
+
+pygame.quit()
